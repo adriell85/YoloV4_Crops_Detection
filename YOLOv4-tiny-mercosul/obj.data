@@ -1,0 +1,6 @@
+classes= 1
+train  = data/train.txt
+valid = data/test.txt
+names = /home/hercules/Documents/codes/ocr_multicams_local/lib/conf_v4/YOLOv4-tiny-mercosul/obj.names
+backup = backup
+eval=coco

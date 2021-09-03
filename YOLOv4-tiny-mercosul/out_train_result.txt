@@ -1,0 +1,21 @@
+calculation mAP (mean average precision)...
+ Detection layer: 30 - type = 28 
+ Detection layer: 37 - type = 28 
+
+ detections_count = 5757, unique_truth_count = 4374  
+class_id = 0, name = antiga, ap = 98.56%   	 (TP = 3018, FP = 148) 
+class_id = 1, name = nova, ap = 98.67%   	 (TP = 1268, FP = 26) 
+
+ for conf_thresh = 0.25, precision = 0.96, recall = 0.98, F1-score = 0.97 
+ for conf_thresh = 0.25, TP = 4286, FP = 174, FN = 88, average IoU = 83.16 % 
+
+ IoU threshold = 50 %, used Area-Under-Curve for each unique Recall 
+ mean average precision (mAP@0.50) = 0.986168, or 98.62 % 
+
+Set -points flag:
+ `-points 101` for MS COCO 
+ `-points 11` for PascalVOC 2007 (uncomment `difficult` in voc.data) 
+ `-points 0` (AUC) for ImageNet, PascalVOC 2010-2012, your custom dataset
+
+ mean_average_precision (mAP@0.5) = 0.986168 
+
