@@ -2,7 +2,7 @@ import cv2
 import time
 import glob
 # Utilizando a YoloV4 - pesos já treinados
-
+# Adriell Gomes
 # class colors
 COLORS = [(0,255,255),(255,255,0),(0,255,0),(255,0,0)]
 
