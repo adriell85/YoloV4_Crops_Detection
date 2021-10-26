@@ -10,7 +10,16 @@ COLORS = [(0,255,255),(255,255,0),(0,255,0),(255,0,0)]
 with open("YOLOv4-tiny-mercosul/obj.names","r") as file:
     class_names = [coconames.strip() for coconames in file.readlines()]
 
-for name in glob.glob('0_out/*.png'):
+for name in glob.glob('datasets/9_Rafael/*.png'):
+
+    print(name)
+
+    image_name = name.split('\\')[1]
+
+    folder = name.split('\\')[0]
+
+    image_name = image_name.split('.')[0]
+
     # captura de vídeo
     capture = cv2.imread(name,1)
 
@@ -60,15 +69,27 @@ for name in glob.glob('0_out/*.png'):
         cv2.putText(frame,fps_label,(0,25),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,0),5)
         cv2.putText(frame,fps_label,(0,25),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),3)
 
+        # '0_out/'
+        # '{}<object-class> {}<x_center> {}<y_center> {}<width> {}<height>\n'
 
-        # Mostrar imagem
-    cv2.imshow('output',frame)
+        image_width = frame.shape[1]
+
+        image_height = frame.shape[0]
+
+        f = open('{}/{}.txt'.format(folder,image_name), 'w')
+        line = '{} {} {} {} {}\n'.format(int(classId),(box[0] + box[2] / 2)/(image_width),(box[1] + box[3] / 2)/(image_height),(box[2])/(image_width),(box[3])/(image_height))
+        f.write(line)
+        f.close()
+
+    # cv2.imshow('output',frame)
+    # cv2.imwrite('{}.jpeg'.format(image_name),frame)
+
 
 
         # Esperar resposta
     # if(cv2.waitKey(1) == 27):
     #     break
         # Libera câmera e destroi janelas
-    cv2.waitKey(1000)
+    # cv2.waitKey(1000)
     # capture.release()
     cv2.destroyAllWindows
