@@ -6,16 +6,16 @@ import time
 COLORS = [(0,255,255),(255,255,0),(0,255,0),(255,0,0)]
 
 # carregar as classes
-with open("coco.names","r") as file:
+with open("classes.names","r") as file:
     class_names = [coconames.strip() for coconames in file.readlines()]
 
 # captura de vídeo
 capture = cv2.VideoCapture(0)
 
 # Carregar Pesos da rede neural
-net = cv2.dnn.readNet("yolov4_configs_generalizadas/yolov4-tiny.weights", "yolov4_configs_generalizadas/yolov4-tiny.cfg")
-# net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-# net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA_FP16)
+net = cv2.dnn.readNet("pesos/yolov4-tiny.weights", "pesos/yolov4-tiny.cfg")
+net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA_FP16)
 
 # Setar parâmetros da rede neural
 model = cv2.dnn_DetectionModel(net)
@@ -44,7 +44,7 @@ while cv2.waitKey(1)<1:
         color = COLORS[int(classId)%len(COLORS)]
 
         # Obtendo nome da classe pelo seu respectivo ID
-        label = "%s : %f" % (class_names[classId[0]], score)
+        label = "%s : %f" % (class_names[classId], score)
 
         # Desenhar a box detectada
         cv2.rectangle(frame,box,color,2)
